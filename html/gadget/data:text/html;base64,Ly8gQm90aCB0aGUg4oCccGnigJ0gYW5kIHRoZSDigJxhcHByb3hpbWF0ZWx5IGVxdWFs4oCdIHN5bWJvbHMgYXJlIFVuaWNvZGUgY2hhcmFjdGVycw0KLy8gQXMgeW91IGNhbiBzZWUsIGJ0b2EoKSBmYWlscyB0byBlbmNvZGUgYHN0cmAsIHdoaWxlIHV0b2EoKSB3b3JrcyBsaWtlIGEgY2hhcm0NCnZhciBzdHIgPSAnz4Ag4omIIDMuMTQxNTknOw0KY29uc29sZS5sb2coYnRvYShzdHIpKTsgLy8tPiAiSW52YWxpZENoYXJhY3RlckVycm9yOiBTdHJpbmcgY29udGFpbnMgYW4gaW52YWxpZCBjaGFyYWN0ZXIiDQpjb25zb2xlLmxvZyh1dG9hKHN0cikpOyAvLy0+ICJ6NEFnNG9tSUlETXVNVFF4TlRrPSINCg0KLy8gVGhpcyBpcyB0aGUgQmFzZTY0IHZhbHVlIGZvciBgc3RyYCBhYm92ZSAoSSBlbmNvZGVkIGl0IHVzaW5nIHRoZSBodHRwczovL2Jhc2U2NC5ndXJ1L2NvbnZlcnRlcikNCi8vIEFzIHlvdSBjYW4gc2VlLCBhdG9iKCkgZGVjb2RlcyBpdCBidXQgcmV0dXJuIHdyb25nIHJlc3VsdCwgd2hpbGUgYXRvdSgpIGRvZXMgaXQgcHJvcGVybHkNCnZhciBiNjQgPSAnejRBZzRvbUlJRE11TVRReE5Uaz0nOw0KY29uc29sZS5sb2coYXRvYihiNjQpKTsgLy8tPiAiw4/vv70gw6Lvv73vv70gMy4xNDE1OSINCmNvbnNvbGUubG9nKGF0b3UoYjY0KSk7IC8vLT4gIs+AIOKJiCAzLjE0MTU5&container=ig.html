@@ -1,0 +1,11 @@
+// Both the â€œpiâ€ and the â€œapproximately equalâ€ symbols are Unicode characters
+// As you can see, btoa() fails to encode `str`, while utoa() works like a charm
+var str = 'Ï€ â‰ˆ 3.14159';
+console.log(btoa(str)); //-> "InvalidCharacterError: String contains an invalid character"
+console.log(utoa(str)); //-> "z4Ag4omIIDMuMTQxNTk="
+
+// This is the Base64 value for `str` above (I encoded it using the https://base64.guru/converter)
+// As you can see, atob() decodes it but return wrong result, while atou() does it properly
+var b64 = 'z4Ag4omIIDMuMTQxNTk=';
+console.log(atob(b64)); //-> "Ãï¿½ Ã¢ï¿½ï¿½ 3.14159"
+console.log(atou(b64)); //-> "Ï€ â‰ˆ 3.14159
